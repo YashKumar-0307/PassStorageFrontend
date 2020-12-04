@@ -23,8 +23,8 @@
     "eject": "react-scripts eject"
   },
   "engines": {
-    "node": ">=12.18.2",
-    "npm": ">=6.14.5"
+    "node": "12.x",
+    "npm": "6.x"
   },
   "eslintConfig": {
     "extends": "react-app"
