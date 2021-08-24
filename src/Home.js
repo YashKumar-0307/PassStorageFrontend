@@ -77,8 +77,8 @@ class Home extends React.Component {
     .then(response => response.json())
     .then((user)=>{
         this.setState({
-          searuserid: user[0].userid,
-          searpass: user[0].keyss,
+          searuserid: user.userid,
+          searpass: user.keyss,
           searfound: true,
         })
     })
