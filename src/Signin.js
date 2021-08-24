@@ -45,11 +45,11 @@ class Signin extends React.Component {
     .then(response => response.json())
     .then(user => {
     //  this.setState({ckey : ''});
-      if(user[0].id)
+      if(user._id)
       {
-        this.props.loadUser(user[0]);
+        this.props.loadUser(user);
         this.props.onButtonSubmit();
-      }
+      }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
     })
     .catch(err => console.log(err))
   }

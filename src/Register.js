@@ -36,9 +36,9 @@ class Register extends React.Component {
     })
     .then(response => response.json())
     .then(data => {
-      if(data[0].id)
+      if(data.loginset._id)
         {
-          loadUser(data[0]);
+          loadUser(data.loginset);
           onButtonSubmit();
         }
       })
