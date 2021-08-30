@@ -30,7 +30,7 @@ class Home extends React.Component {
 
   onIdChange = (event) =>{
     this.setState({userid : event.target.value});
-    console.log(this.state.userid)
+    //console.log(this.state.userid)
   }
 
   onPasswordChange = (event) =>{
@@ -105,6 +105,7 @@ class Home extends React.Component {
                     type="text"
                     name="platform-name-1"
                     id="platform-name-1"
+                    value={this.state.platform}
                     onChange={this.onPlatformChange}
                   />
                 </div>
@@ -115,6 +116,7 @@ class Home extends React.Component {
                     type="email"
                     name="email-address"
                     id="email-address"
+                    value={this.state.userid}
                     onChange={this.onIdChange}
                   />
                 </div>
@@ -125,6 +127,7 @@ class Home extends React.Component {
                     type="password"
                     name="password"
                     id="password"
+                    value={this.state.password}
                     onChange={this.onPasswordChange}
                   />
                 </div>
@@ -158,6 +161,7 @@ class Home extends React.Component {
                     type="text"
                     name="plat-name"
                     id="plat-name"
+                    value={this.state.searplat}
                     onChange={this.onSearPlatformChange}
                   />
                 </div>
