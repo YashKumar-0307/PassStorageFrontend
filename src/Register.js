@@ -25,7 +25,7 @@ class Register extends React.Component {
 
   onRegister = () =>{
     const {loadUser, onButtonSubmit} = this.props;
-    fetch('https://pass-storage.herokuapp.com/register',{
+    fetch('http://pass-storage.herokuapp.com/register',{
       method : 'post',
       headers : {'Content-Type' : 'application/json'},
       body: JSON.stringify({

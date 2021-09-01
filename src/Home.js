@@ -46,8 +46,15 @@ class Home extends React.Component {
     });
   }
 
+  clearData1 = () =>{
+    this.setState({
+      id:this.props.id,
+      searplat:'',
+    });
+  }
+
   onSubmitEntry= () => {
-    fetch('https://pass-storage.herokuapp.com/newentry',{
+    fetch('http://pass-storage.herokuapp.com/newentry',{
       method : 'post',
       headers : {'Content-Type' : 'application/json'},
       body: JSON.stringify({
@@ -66,7 +73,7 @@ class Home extends React.Component {
 
   onSearchEntry= () => {
     this.setState({searfound: false});
-    fetch('https://pass-storage.herokuapp.com/getdetails',{
+    fetch('http://pass-storage.herokuapp.com/getdetails',{
       method : 'post',
       headers : {'Content-Type' : 'application/json'},
       body: JSON.stringify({
@@ -81,6 +88,11 @@ class Home extends React.Component {
           searpass: user.keyss,
           searfound: true,
         })
+        if(!user.userid)
+        {
+          this.setState({searfound: false,})
+        }
+        this.clearData1();
     })
       .catch(err => console.log(err))
   }
