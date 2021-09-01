@@ -34,7 +34,7 @@ class Signin extends React.Component {
   onSignIn = () =>{ 
   //  this.chshkey;
     //this.setState({password : cryptr.encrypt(this.state.password)})
-    fetch('https://pass-storage.herokuapp.com/signin',{
+    fetch('http://pass-storage.herokuapp.com/signin',{
       method : 'post',
       headers : {'Content-Type' : 'application/json'},
       body: JSON.stringify({
