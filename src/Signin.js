@@ -34,7 +34,8 @@ class Signin extends React.Component {
   onSignIn = () =>{ 
   //  this.chshkey;
     //this.setState({password : cryptr.encrypt(this.state.password)})
-    fetch('http://pass-storage.herokuapp.com/signin',{
+    fetch('http://localhost:3001/signin',{
+    //fetch('http://pass-storage.herokuapp.com/signin',{
       method : 'post',
       headers : {'Content-Type' : 'application/json'},
       body: JSON.stringify({
@@ -50,6 +51,10 @@ class Signin extends React.Component {
         this.props.loadUser(user);
         this.props.onButtonSubmit();
       }
+      else
+      {
+        alert(' Wrong username/password');
+      }
     })
     .catch(err => console.log(err))
   }
@@ -63,10 +68,10 @@ class Signin extends React.Component {
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
               <legend className="f1 fw6 ph0 mh0">Sign In</legend>
               <div className="mt3">
-                <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
+                <label className="db fw6 lh-copy f6" htmlFor="email-address">UserID</label>
                 <input
                   className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
-                  type="email"
+                  type="text"
                   name="email-address"
                   id="email-address"
                   onChange = {this.onEmailChange}

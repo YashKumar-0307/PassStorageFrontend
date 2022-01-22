@@ -77,7 +77,7 @@ class App extends Component
           <Home id={this.state.user.id} cat = {cat} />  
           :
           route === 'register'?
-          <Register loadUser={this.loadUser} onButtonSubmit={this.onButtonSubmit} onRouteChange={this.onRouteChange}/>
+          <Register loadUser={this.loadUser} onButtonSubmit={this.onButtonSubmit} onRouteChange={this.onRouteChange} />
           :
           <Signin onButtonSubmit={this.onButtonSubmit} onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>
         }

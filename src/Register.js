@@ -25,7 +25,8 @@ class Register extends React.Component {
 
   onRegister = () =>{
     const {loadUser, onButtonSubmit} = this.props;
-    fetch('http://pass-storage.herokuapp.com/register',{
+     fetch('http://localhost:3001/register',{
+    //fetch('http://pass-storage.herokuapp.com/register',{
       method : 'post',
       headers : {'Content-Type' : 'application/json'},
       body: JSON.stringify({
@@ -41,6 +42,9 @@ class Register extends React.Component {
           loadUser(data.loginset);
           onButtonSubmit();
         }
+      else{
+        alert("UserID taken! Please use another id");
+      }
       })
       .catch(err => console.log(err))
   }
@@ -59,16 +63,18 @@ class Register extends React.Component {
                   type="text"
                   name="name"
                   id="name"
+                  value={this.state.name}
                   onChange={this.onNameChange}
                 />
               </div>
               <div className="mt3">
-                <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
+                <label className="db fw6 lh-copy f6" htmlFor="email-address">UserID</label>
                 <input
                   className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
-                  type="email"
+                  type="text"
                   name="email-address"
                   id="email-address"
+                  value={this.state.email}
                   onChange={this.onEmailChange}
                 />
               </div>
@@ -79,6 +85,7 @@ class Register extends React.Component {
                   type="password"
                   name="password"
                   id="password"
+                  value={this.state.password}
                   onChange = {this.onPasswordChange}
                 />
               </div>

@@ -26,6 +26,7 @@ class Home extends React.Component {
 
   onSearPlatformChange = (event) =>{
     this.setState({searplat  : event.target.value});
+    //console.log(event.target.value);
   }
 
   onIdChange = (event) =>{
@@ -54,7 +55,13 @@ class Home extends React.Component {
   }
 
   onSubmitEntry= () => {
-    fetch('http://pass-storage.herokuapp.com/newentry',{
+    if(!this.state.platform || !this.state.userid || !this.state.password)
+    {
+      console.log("Empty new entry fields");
+      return;
+    }
+    fetch('http://localhost:3001/newentry',{
+    //fetch('http://pass-storage.herokuapp.com/newentry',{
       method : 'post',
       headers : {'Content-Type' : 'application/json'},
       body: JSON.stringify({
@@ -65,15 +72,30 @@ class Home extends React.Component {
       })
     })
     .then(response => response.json())
-    .then(()=>{
-      this.clearData();
+    .then((resp)=>{
+      if(resp.registered)
+      {
+        alert("Registered");
+        this.clearData();
+      }
+      else
+      alert("Platform Already Exists");
     })
-      .catch(err => console.log(err))
+      .catch(err => {
+        //alert("Platform already exists");
+        console.log(err);
+      })
   }
 
   onSearchEntry= () => {
+    if(!this.state.searplat)
+    {
+      console.log("Empty Platform field");
+      return;
+    }
     this.setState({searfound: false});
-    fetch('http://pass-storage.herokuapp.com/getdetails',{
+    fetch('http://localhost:3001/getdetails',{
+    //fetch('http://pass-storage.herokuapp.com/getdetails',{
       method : 'post',
       headers : {'Content-Type' : 'application/json'},
       body: JSON.stringify({
@@ -83,16 +105,22 @@ class Home extends React.Component {
     })
     .then(response => response.json())
     .then((user)=>{
+      if(user)
+      {
         this.setState({
           searuserid: user.userid,
           searpass: user.keyss,
           searfound: true,
-        })
+        });
         if(!user.userid)
         {
-          this.setState({searfound: false,})
+          this.setState({searfound: false});
         }
         this.clearData1();
+      }
+      else{
+        alert("Platform not found");
+      }
     })
       .catch(err => console.log(err))
   }
@@ -124,7 +152,7 @@ class Home extends React.Component {
                   <label className="db fw6 lh-copy f6" htmlFor="text">User Id</label>
                   <input
                     className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w10"
-                    type="email"
+                    type="text"
                     name="email-address"
                     id="email-address"
                     value={this.state.userid}
